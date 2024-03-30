@@ -2,7 +2,7 @@ import {getAvailableHellos} from "../../../mocks/db/index";
 import {shuffleArray} from "../../utils/arrays/index";
 
 /**
- * A troop assigned to an hello with size as number of soldiers
+ * A hello object
  */
 type Hello = {
     name: string
@@ -10,7 +10,7 @@ type Hello = {
 };
 
 /**
- * Generate an hello
+ * Generate a hello
  * @param size the size of the hello
  * @returns the hello
  */

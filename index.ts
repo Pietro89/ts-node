@@ -1,15 +1,13 @@
 import {Server} from 'http';
 import "reflect-metadata";
-import {createConnection} from "typeorm";
-import logger from "./src/utils/logger"
-import {app} from "./src/app"
+import logger from "@utils/logger"
+import {app} from "@app"
 
 const PORT = process.env.API_PORT || 3000
 
 async function initServer() {
     try {
-        await createConnection()
-        logger.info(`Connected to database`);
+        //start db
         app.listen(PORT, (): void => {
             logger.info(`Connected successfully on port ${PORT}`);
         });

@@ -1,11 +1,11 @@
 import {Request} from "express";
 import {ERROR_MESSAGES} from "../errors/index";
 import * as jwt from "jsonwebtoken";
-import {getRepository} from "typeorm";
-import {User} from "../../entity/index";
+import {findUserById} from "../../db/models/user/repository";
+import {User} from "../../db/models/user/types";
 
 // @ts-ignore
-export const BearerAuth = async (req,) => {
+export const BearerAuth = async (req) => {
     const token = getToken(req)
     if(!token) {
         throw (ERROR_MESSAGES.MISSING_TOKEN)
@@ -14,7 +14,7 @@ export const BearerAuth = async (req,) => {
     if(!decoded) {
         throw (ERROR_MESSAGES.INVALID_TOKEN)
     }
-    const user = await getRepository(User).findOne(decoded.id)
+    const user = await findUserById(decoded.id)
     if(!user) {
         throw (ERROR_MESSAGES.INVALID_USER)
     }
